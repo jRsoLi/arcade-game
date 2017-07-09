@@ -1,3 +1,24 @@
+var Game = function() {
+  this.points = 0;
+  this.lives = 3;
+};
+
+Game.prototype.score = function() {
+  ctx.fillStyle = "rgba(0,0,0,1)";
+  ctx.fillRect(0, 20, canvas.width, 30);
+  //add text showing lives & points
+  ctx.fillStyle = "rgba(255,0,0,1)";
+  ctx.font = "12pt impact";
+  ctx.textAlign="left";
+  ctx.fillText("Lives: " + this.lives, 350, 40);
+  //ctx.fillText("Level: " + this.gameLevel, 10, 40);
+  ctx.fillText("Points: " + this.points, 410, 40);
+};
+
+Game.prototype.render = function(dt) {
+  this.score();
+}
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -71,6 +92,8 @@ Enemy.prototype.collision = function() {
       enemyRight >= playerLeft &&
       enemyTop <= playerBottom &&
       enemyBottom >= playerTop) {
+
+        game.lives = game.lives - 1;
         player.x = player.startX;
         player.y = player.startY;
       }
@@ -91,7 +114,7 @@ var Player = function() {
   this.x = this.startX;
   this.y = this.startY;
 
-  this.sprite = "images/char-boy.png";
+  this.sprite = "images/char-cat-girl.png";
 };
 
 Player.prototype.update = function(xMove, yMove) {
@@ -134,15 +157,43 @@ Player.prototype.handleInput = function(key) {
 
   this.update(xMove, yMove);
 };
+
+var Home = function() {
+  this.homeLeft = -1;
+  this.homeWidth = 505;
+  this.homeTop = 50;
+  this.homeHeight = 60;
+};
+
+Home.prototype.reachedHome = function() {
+  var playerLeft = player.x + 10;
+  var playerRight = player.x + 90;
+  var playerTop = player.y;
+  var playerBottom = player.y + 70;
+
+  //check if they overlap
+  if (this.homeLeft <= playerRight &&
+      this.homeWidth >= playerLeft &&
+      this.homeTop <= playerBottom &&
+      this.homeHeight >= playerTop) {
+
+        game.points = game.points + 1;
+        player.x = player.startX;
+        player.y = player.startY;
+  }
+};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+var game = new Game();
+var home = new Home();
 var allEnemies = [];
 var numEnemies = 4;
 for (var i = 0; i < numEnemies; i++) {
   allEnemies.push(new Enemy());
 }
 var player = new Player();
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

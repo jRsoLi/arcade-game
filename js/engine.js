@@ -81,12 +81,17 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
+        checkHome();
     }
 
     function checkCollisions() {
       allEnemies.forEach(function(enemy) {
         enemy.collision();
       });
+    }
+
+    function checkHome() {
+      home.reachedHome();
     }
 
     /* This is called by the update function and loops through all of the
@@ -109,7 +114,7 @@ var Engine = (function(global) {
      * they are flipbooks creating the illusion of animation but in reality
      * they are just drawing the entire screen over and over.
      */
-    function render() {
+    function render(dt) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
@@ -143,6 +148,8 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+        game.render(dt)
+
     }
 
     /* This function is called by the render function and is called on each game
@@ -158,6 +165,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+
     }
 
     /* This function does nothing but it could have been a good place to
@@ -177,7 +185,11 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 

@@ -85,16 +85,19 @@ var Engine = (function(global) {
         checkItems();
     }
 
+    // check for enemies colliding with the player
     function checkCollisions() {
       allEnemies.forEach(function(enemy) {
         enemy.collision();
       });
     }
 
+    //check whether the player reached home and scored
     function checkHome() {
       home.reachedHome();
     }
 
+    //check whether the player went over an object to collect it
     function checkItems() {
       for (var i = 0; i < allItems.length; i++) {
         allItems[i].pickup();

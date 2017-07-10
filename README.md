@@ -1,6 +1,23 @@
-frontend-nanodegree-arcade-game
+FEND Arcade Game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+**Installation**
+Download or clone the repository to your local machine
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+**Run the Game**
+Start the index.html to player
+
+**Rules**
+1. Select a player with the up/down keys
+2. Confirm selection by pressing enter
+
+**Scoring**
+1. You start with 3 lives, when you collect a heart you receive a life.
+2. Get across the street without running into bugs, when you run into a bug you will loose a life. When you reach the Water you receive 50 points,
+3. Items: When you collect a Green Gem you receive 10 points.
+          When you collect a Blue Gem you receive 30 points.
+          When you collect a Orange Gem you receive 50 points.
+          When you collect a Key you receive 100 points.
+4. Your HighScore will be saved!
+
+**Enjoy the game!**
